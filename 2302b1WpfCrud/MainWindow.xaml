@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_2302b1WpfCrud"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="-4,0,4,0">
         <Label x:Name="label" Content="Name" HorizontalAlignment="Left" Margin="25,69,0,0" VerticalAlignment="Top" Width="45"/>
         <TextBox x:Name="pname" HorizontalAlignment="Left" Margin="95,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Copy" Content="Description" HorizontalAlignment="Left" Margin="25,107,0,0" VerticalAlignment="Top" Width="70"/>
@@ -23,6 +23,10 @@
         <DataGrid x:Name="productGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="265,69,60,190"/>
         <Button x:Name="delete" Content="Delete" HorizontalAlignment="Left" Margin="515,344,0,0" VerticalAlignment="Top" Width="215" Height="30" Background="#FF00CC1F" BorderBrush="#FFF8FDF2" Foreground="White" FontFamily="Adobe Caslon Pro Bold" FontSize="18" FontWeight="Bold" RenderTransformOrigin="1.333,0.501"/>
         <Button x:Name="update" Content="Update" HorizontalAlignment="Left" Margin="250,344,0,0" VerticalAlignment="Top" Width="230" Height="30" Background="#FF00CC1F" BorderBrush="#FFF8FDF2" Foreground="White" FontFamily="Adobe Caslon Pro Bold" FontSize="18" FontWeight="Bold"/>
+        <TextBox x:Name="sid" HorizontalAlignment="Left" Margin="334,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="sid_label" Content="Student Id" HorizontalAlignment="Left" Margin="265,288,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="fetch" Content="Fetch" HorizontalAlignment="Left" Margin="470,290,0,0" VerticalAlignment="Top" Width="50" Height="20" Background="#FF00CC1F" BorderBrush="#FFF8FDF2" Foreground="White" FontFamily="Adobe Caslon Pro Bold" FontSize="13" FontWeight="Bold" Click="AddProduct" RenderTransformOrigin="0.667,0.835"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="265,0,0,0" TextWrapping="Wrap" Text="Our Registered Products " VerticalAlignment="Top" Width="475" FontSize="36" FontFamily="Adobe Kaiti Std R" TextDecorations="Underline" Foreground="#FF0FC311" FontWeight="ExtraBold" TextAlignment="Center"/>
 
     </Grid>
 </Window>

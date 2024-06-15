@@ -6,19 +6,15 @@ using System.Windows;
 
 namespace _2302b1WpfCrud
 {
-
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            LoadProducts();
         }
 
         SqlConnection Conn = new SqlConnection("Data Source=.;Initial Catalog=2302B1WPFCRUD;User ID=sa;Password=aptech;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-
-
-
-
 
         private void clearData()
         {
@@ -31,6 +27,17 @@ namespace _2302b1WpfCrud
 
         }
 
+        private void LoadProducts()
+        {
+            SqlCommand getProducts = new SqlCommand("SELECT * From products",Conn);
+            DataTable productTable = new DataTable();
+            Conn.Open();
+            SqlDataReader reader = getProducts.ExecuteReader();
+            productTable.Load(reader);
+
+            Conn.Close();
+            productGrid.ItemsSource = productTable.DefaultView;
+        }
 
         private bool isValid()
         {
@@ -54,6 +61,7 @@ namespace _2302b1WpfCrud
             if (isValid()==true)
             {
                 SqlCommand addprod = new SqlCommand("Insert into products values (@pname,@desc,@price,@qty,@cat)", Conn);
+
                 Conn.Open();
                 addprod.CommandType = CommandType.Text;
 
