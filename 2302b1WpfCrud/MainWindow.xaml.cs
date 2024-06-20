@@ -24,6 +24,7 @@ namespace _2302b1WpfCrud
             price.Clear();
             qty.Clear();
             cat.Clear();
+            pid.Clear();
 
         }
 
@@ -75,9 +76,32 @@ namespace _2302b1WpfCrud
                 Conn.Close();
                 MessageBox.Show("Product added succesfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 clearData();
+                LoadProducts();
 
             }
 
+        }
+
+        private void RemoveProduct(object sender, RoutedEventArgs e)
+        {
+            if (pid.Text != string.Empty)
+            {
+                SqlCommand deleteProduct = new SqlCommand("DELETE From products where Id = @pid", Conn);
+
+                deleteProduct.CommandType = CommandType.Text;
+                Conn.Open();
+                deleteProduct.Parameters.AddWithValue("@pid", pid.Text);
+                deleteProduct.ExecuteNonQuery();
+                Conn.Close();
+                MessageBox.Show("Product deleted succesfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                LoadProducts();
+                clearData();
+
+            }
+            else
+            {
+                MessageBox.Show("We need product id to delete it.", "Can't Delete without Id", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
