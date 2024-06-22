@@ -103,5 +103,68 @@ namespace _2302b1WpfCrud
                 MessageBox.Show("We need product id to delete it.", "Can't Delete without Id", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void GetProductDetails(object sender, RoutedEventArgs e)
+        {
+            if (pid.Text != string.Empty)
+            {
+                SqlCommand getProduct = new SqlCommand("SELECT * From products where Id = @pid", Conn);
+                getProduct.CommandType = CommandType.Text;
+                Conn.Open();
+                getProduct.Parameters.AddWithValue("@pid",pid.Text);
+                SqlDataReader reader = getProduct.ExecuteReader();
+                if (reader.Read())
+                {
+                    pname.Text = reader["pname"].ToString();
+                    desc.Text = reader["description"].ToString();
+                    price.Text = reader["price"].ToString();
+                    qty.Text = reader["qty"].ToString();
+                    cat.Text = reader["category"].ToString();
+                    update.Content = "Update";
+                    update +=Click
+
+                    
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Id.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+
+                Conn.Close();
+                
+
+            }
+            else
+            {
+                MessageBox.Show("We need product id to update product.", "Can't Update without Id", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void UpdateProduct(object sender, RoutedEventArgs e)
+        {
+            if (isValid())
+            {
+                SqlCommand updProduct = new SqlCommand("UPDATE products SET description=@description, pname=@pname, price=@price, qty=@qty, category=@cat WHERE Id=@pid;", Conn);
+                Conn.Open();
+                updProduct.CommandType = CommandType.Text;
+                updProduct.Parameters.AddWithValue("@pname", pname.Text);
+                updProduct.Parameters.AddWithValue("@price", price.Text);
+                updProduct.Parameters.AddWithValue("@cat", cat.Text);
+                updProduct.Parameters.AddWithValue("@qty", qty.Text);
+                updProduct.Parameters.AddWithValue("@pid", pid.Text);
+                updProduct.Parameters.AddWithValue("@description", desc.Text);
+                updProduct.ExecuteNonQuery();
+                Conn.Close();
+
+
+                MessageBox.Show("Product updated successfully.", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                clearData();
+                LoadProducts();
+            }
+
+        }
     }
 }

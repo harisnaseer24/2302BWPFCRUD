@@ -2,7 +2,7 @@ CREATE TABLE [dbo].products
 (
 	[Id] INT PRIMARY KEY IDENTITY(1,1), 
     [pname] NVARCHAR(50) NOT NULL, 
-    [desc] NVARCHAR(100) NOT NULL, 
+    [description] NVARCHAR(100) NOT NULL, 
     [price] INT NOT NULL, 
     [qty] INT NOT NULL, 
     [category] NVARCHAR(50) NOT NULL,
